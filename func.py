@@ -16,8 +16,7 @@ def copy_vol(blockStorageClient, volume_backup_id):
     blockStorageClient.copy_volume_backup(volume_backup_id, copy_volume_backup_details)
 
 def handler(ctx, data: io.BytesIO=None):
-    delegation_token = open('/etc/oci/delegation_token', 'r').read()
-    signer = oci.auth.signers.InstancePrincipalsDelegationTokenSigner(delegation_token=delegation_token)
+    signer = oci.auth.signers.get_resource_principals_signer()
     blockStorageClient = oci.core.BlockstorageClient(config={}, signer=signer)
     try:
         body = json.loads(data.getvalue())
