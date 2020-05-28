@@ -17,8 +17,8 @@ def copy_vol(blockStorageClient, volume_backup_id):
 
 def handler(ctx, data: io.BytesIO=None):
     signer = oci.auth.signers.get_resource_principals_signer()
-    os_client = oci.object_storage.ObjectStorageClient(config={}, signer=signer)
-    blockStorageClient = oci.core.BlockstorageClient(config={}, signer=signer)
+    os_client = oci.object_storage.ObjectStorageClient(config={"region":"us-ashburn-1"}, signer=signer)
+    blockStorageClient = oci.core.BlockstorageClient(config={"region":"us-ashburn-1"}, signer=signer)
     try:
         body = json.loads(data.getvalue())
         logging.info(body)
