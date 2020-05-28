@@ -21,6 +21,7 @@ def handler(ctx, data: io.BytesIO=None):
     try:
         body = json.loads(data.getvalue())
         volume_group_backup_id = body.get("id")
+        logging.info(body)
     except (Exception, ValueError) as ex:
         logging.info('error parsing json payload: ' + str(ex))
     get_volumes(blockStorageClient, volume_group_backup_id)
