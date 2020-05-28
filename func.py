@@ -22,7 +22,8 @@ def handler(ctx, data: io.BytesIO=None):
     try:
         body = json.loads(data.getvalue())
         logging.info(body)
-        volume_group_backup_id = body.get("resourceId")
+        body_data = body.get("data")
+        volume_group_backup_id = body_data["resourceId"]
         logging.info(os_client.get_namespace().data)
         # volume_group_backup_id = "ocid1.volumegroupbackup.oc1.iad.abuwcljryruljo27yv7kvgi6jmijojglh2ktuxgqurs6gituzo66z662npta"
         # logging.info(body)
