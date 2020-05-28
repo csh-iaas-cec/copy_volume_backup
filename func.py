@@ -19,9 +19,11 @@ def handler(ctx, data: io.BytesIO=None):
     signer = oci.auth.signers.get_resource_principals_signer()
     blockStorageClient = oci.core.BlockstorageClient(config={}, signer=signer)
     try:
-        body = json.loads(data.getvalue())
-        volume_group_backup_id = body.get("id")
-        logging.info(body)
+        # body = json.loads(data.getvalue())
+        # logging.info(body)
+        # volume_group_backup_id = body.get("id")
+        volume_group_backup_id = "ocid1.volumegroupbackup.oc1.iad.abuwcljryruljo27yv7kvgi6jmijojglh2ktuxgqurs6gituzo66z662npta"
+        # logging.info(body)
     except (Exception, ValueError) as ex:
         logging.info('error parsing json payload: ' + str(ex))
     get_volumes(blockStorageClient, volume_group_backup_id)
