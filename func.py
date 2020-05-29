@@ -25,13 +25,11 @@ def handler(ctx, data: io.BytesIO=None):
         body_data = body.get("data")
         volume_group_backup_id = body_data["resourceId"]
         logging.info(os_client.get_namespace().data)
-        # volume_group_backup_id = "ocid1.volumegroupbackup.oc1.iad.abuwcljryruljo27yv7kvgi6jmijojglh2ktuxgqurs6gituzo66z662npta"
-        # logging.info(body)
     except (Exception, ValueError) as ex:
         logging.info('error parsing json payload: ' + str(ex))
     get_volumes(blockStorageClient, volume_group_backup_id)
     return response.Response(
         ctx, response_data=json.dumps(
-            {"message": "Hello"}),
+            {"message": "Successfully created volume group"}),
         headers={"Content-Type": "application/json"}
     )
